@@ -8,6 +8,7 @@ public partial class BucketObject : StaticBody3D
     private ShaderMaterial _shaderMaterial;
     private ColorBucket _colorBucket;
     private bool _showAccumulatedColor;
+    private bool _isMouseOver;
 
     public override void _InputEvent(Camera3D camera, InputEvent @event, Vector3 eventPosition, Vector3 normal, int shapeIdx)
     {
@@ -54,7 +55,7 @@ public partial class BucketObject : StaticBody3D
             return Colors.White;
         }
         
-        if (_showAccumulatedColor)
+        if (_showAccumulatedColor || _isMouseOver)
         {
             return _colorBucket.AverageColor;
         }
@@ -75,13 +76,26 @@ public partial class BucketObject : StaticBody3D
         label.Text = count is null ? "" : count.ToString();
         var labelSprite = GetNode<Sprite3D>("CountLabel");
 
-        var showLabel = _showAccumulatedColor && count is not null && count > 0;
+        var labelHasData = count is not null && count > 0;
+        var showLabel = (_showAccumulatedColor || _isMouseOver) && labelHasData;
         labelSprite.Visible = showLabel;
     }
 
     public void ShowAccumulatedColor(bool enabled)
     {
         _showAccumulatedColor = enabled;
+        UpdateVisuals();
+    }
+
+    public override void _MouseEnter()
+    {
+        _isMouseOver = true;
+        UpdateVisuals();
+    }
+
+    public override void _MouseExit()
+    {
+        _isMouseOver = false;
         UpdateVisuals();
     }
 }
