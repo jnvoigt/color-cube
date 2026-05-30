@@ -2,8 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cvvlpm3giplqu" path="res://scripts/ColorCube.cs" id="1_2plm8"]
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_2plm8"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
 [node name="ColorCube" type="Node3D" unique_id=1420074401]
 script = ExtResource("1_2plm8")
+
+[node name="GridMesh" type="MeshInstance3D" parent="." unique_id=1294368088]
+unique_name_in_owner = true
+material_override = SubResource("ORMMaterial3D_2plm8")
 
 [node name="bucket" parent="." unique_id=1286389755 instance_placeholder="res://scenes/bucket.tscn"]
 unique_name_in_owner = true
