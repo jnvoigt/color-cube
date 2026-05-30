@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://1miwje51t11g"]
+
+[node name="PanelContainer" type="PanelContainer" unique_id=2143597642]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="." unique_id=1802170206]
+unique_name_in_owner = true
+layout_mode = 2
+text = "123456"
+horizontal_alignment = 1

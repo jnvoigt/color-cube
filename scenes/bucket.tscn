@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cf6q08stl41gk" path="res://scripts/BucketObject.cs" id="1_ojsi1"]
 [ext_resource type="Shader" uid="uid://dkmwoyg2cmwv5" path="res://shaders/unlit.gdshader" id="2_4mj0c"]
+[ext_resource type="PackedScene" uid="uid://1miwje51t11g" path="res://ui/bucket_tooltip.tscn" id="3_axt1m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_axt1m"]
 render_priority = 0
@@ -21,6 +22,9 @@ rings = 16
 [sub_resource type="SphereShape3D" id="SphereShape3D_qcheq"]
 radius = 0.10169549
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_4mj0c"]
+viewport_path = NodePath("SubViewport")
+
 [node name="bucket" type="StaticBody3D" unique_id=1247855063]
 script = ExtResource("1_ojsi1")
 
@@ -30,3 +34,16 @@ mesh = SubResource("SphereMesh_qcheq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1355441942]
 shape = SubResource("SphereShape3D_qcheq")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=841547313]
+transparent_bg = true
+size = Vector2i(78, 78)
+
+[node name="bucket_tooltip" parent="SubViewport" unique_id=2143597642 instance=ExtResource("3_axt1m")]
+unique_name_in_owner = true
+
+[node name="CountLabel" type="Sprite3D" parent="." unique_id=2097480741]
+unique_name_in_owner = true
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_4mj0c")

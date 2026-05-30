@@ -11,7 +11,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bwjgb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=125869659]
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1895288972]
+unique_name_in_owner = true
+title = "Open a File"
+file_mode = 0
+filters = PackedStringArray("*.png,*.jpg,*.jpeg;Image Files")
+use_native_dialog = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1305833836]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,12 +26,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LoadButton" type="Button" parent="VBoxContainer" unique_id=259572921]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=125869659]
+layout_mode = 2
+
+[node name="LoadButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=259572921]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Load File"
 
-[node name="ColorPicker" type="ColorPicker" parent="VBoxContainer" unique_id=1164668241]
+[node name="ColorPicker" type="ColorPicker" parent="PanelContainer/VBoxContainer" unique_id=1164668241]
 unique_name_in_owner = true
 layout_mode = 2
 edit_alpha = false
@@ -34,18 +44,16 @@ color_modes_visible = false
 sliders_visible = false
 presets_visible = false
 
-[node name="AddColor" type="Button" parent="VBoxContainer" unique_id=1791732359]
+[node name="AddColor" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1791732359]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add Color"
 
-[node name="FileDialog" type="FileDialog" parent="." unique_id=1895288972]
+[node name="AccumulatedColorSwitch" type="CheckButton" parent="PanelContainer/VBoxContainer" unique_id=1684774464]
 unique_name_in_owner = true
-title = "Open a File"
-file_mode = 0
-filters = PackedStringArray("*.png,*.jpg,*.jpeg;Image Files")
-use_native_dialog = true
+layout_mode = 2
+text = "Display Accumulated Color"
 
-[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="OnLoadButtonClicked"]
-[connection signal="pressed" from="VBoxContainer/AddColor" to="." method="OnColorAddedClicked"]
 [connection signal="file_selected" from="FileDialog" to="." method="OnFileSelected"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/LoadButton" to="." method="OnLoadButtonClicked"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/AddColor" to="." method="OnColorAddedClicked"]

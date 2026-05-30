@@ -8,9 +8,15 @@ public partial class Menu : Control
 	[Signal]
 	delegate void ColorAddedEventHandler(Color color);
 	
+	[Signal]
+	delegate void ImageLoadedEventHandler(Image image);
+
+	[Signal]
+	delegate void AccumulatedColorSwitchedEventHandler(bool enabled);
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		GetNode<BaseButton>("%AccumulatedColorSwitch").Toggled += EmitSignalAccumulatedColorSwitched;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,8 +32,8 @@ public partial class Menu : Control
 
 	public void OnFileSelected(string path)
 	{
-		var file = new FileInfo(path);
-		
+		var image = Image.LoadFromFile(path);
+		EmitSignalImageLoaded(image);
 	}
 	
 	public void OnColorAddedClicked()
@@ -35,5 +41,9 @@ public partial class Menu : Control
 		var colorPicker = GetNode<ColorPicker>("%ColorPicker");
 		var color = colorPicker.Color;
 		EmitSignalColorAdded(color);
+	}
+	
+	public void OnAccumulatedColorSwitched(bool enabled)
+	{
 	}
 }

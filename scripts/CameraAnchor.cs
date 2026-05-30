@@ -42,8 +42,10 @@ public partial class CameraAnchor : Node3D
 		if (zoom != 0)
 		{
 			var camera3D = GetNode<Camera3D>("%Camera3D");
-			var current = camera3D.Size;
-			camera3D.Size = Math.Clamp(3f, current + zoom * zoom_speed *(float)delta, 8f);
+			var camera3DPosition = camera3D.Position;
+			var current = camera3DPosition.Z;
+			camera3DPosition.Z = Math.Clamp(1.5f, current + zoom * zoom_speed *(float)delta, 10f);
+			camera3D.Position = camera3DPosition;
 		}
 		
 		

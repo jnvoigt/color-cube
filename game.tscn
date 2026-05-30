@@ -30,8 +30,10 @@ script = ExtResource("3_feb5d")
 
 [node name="Camera3D" type="Camera3D" parent="CameraAnchor" unique_id=424435003]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.741768)
-projection = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22554684, 0, 5.741768)
 size = 3.0
+far = 200.0
 
-[connection signal="ColorAdded" from="CanvasLayer/menu" to="ColorCube" method="AddNewColor"]
+[connection signal="AccumulatedColorSwitched" from="CanvasLayer/menu" to="ColorCube" method="ToggleBucketDisplayMode"]
+[connection signal="ColorAdded" from="CanvasLayer/menu" to="ColorCube" method="CreateBucketFromColor"]
+[connection signal="ImageLoaded" from="CanvasLayer/menu" to="ColorCube" method="FillBucketsWithImageData"]
