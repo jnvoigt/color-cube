@@ -23,7 +23,6 @@ public partial class CameraAnchor : Node3D
 	{
 		if (_isMoving)
 		{
-			Debug.WriteLine($"is moving  {_movementDirection}");
 			var f = (float)delta;
 
 			var invertBasis = Basis.Inverse();
@@ -33,5 +32,20 @@ public partial class CameraAnchor : Node3D
 		
 		
 		_movementDirection = Vector2.Zero;
+	}
+	
+	
+	public override void _PhysicsProcess(double delta)
+	{
+		var zoom = Input.GetAxis("zoom_out", "zoom_in");
+		var zoom_speed = 4f;
+		if (zoom != 0)
+		{
+			var camera3D = GetNode<Camera3D>("%Camera3D");
+			var current = camera3D.Size;
+			camera3D.Size = Math.Clamp(3f, current + zoom * zoom_speed *(float)delta, 8f);
+		}
+		
+		
 	}
 }

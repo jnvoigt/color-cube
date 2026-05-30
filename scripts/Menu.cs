@@ -5,6 +5,9 @@ using System.IO;
 
 public partial class Menu : Control
 {
+	[Signal]
+	delegate void ColorAddedEventHandler(Color color);
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -27,4 +30,10 @@ public partial class Menu : Control
 		
 	}
 	
+	public void OnColorAddedClicked()
+	{
+		var colorPicker = GetNode<ColorPicker>("%ColorPicker");
+		var color = colorPicker.Color;
+		EmitSignalColorAdded(color);
+	}
 }

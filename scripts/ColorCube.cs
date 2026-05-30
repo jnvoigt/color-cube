@@ -1,18 +1,17 @@
 using Godot;
 using System;
+using System.Linq;
 using ColorCharacteristics.scripts.Model;
 
 public partial class ColorCube : Node3D
 {
 	private InstancePlaceholder _bucketPlaceholder;
+	private float _bucketFactor = 2;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var r = new RandomNumberGenerator();
 		_bucketPlaceholder = GetNode<InstancePlaceholder>("%bucket");
-
-
 		var buckets = new ColorBucket[]
 		{
 			new(Colors.Black),
@@ -29,14 +28,20 @@ public partial class ColorCube : Node3D
 		};
 		foreach (var colorBucket in buckets)
 		{
-			var bucket = _bucketPlaceholder.CreateInstance() as BucketObject;
-			bucket.Factor = 2;
-			bucket.SetColorBucket(colorBucket);
+			AddColorBucket(colorBucket);
 		}
-		
-		for (var i = 0; i < 10; i++)
-		{
+	}
 
-		}
+	public void AddNewColor(Color color)
+	{
+		var bucket = new ColorBucket(color);
+		AddColorBucket(bucket);
+	}
+	
+	private void AddColorBucket(ColorBucket colorBucket)
+	{
+		var bucket = _bucketPlaceholder.CreateInstance() as BucketObject;
+		bucket.Factor = _bucketFactor;
+		bucket.SetColorBucket(colorBucket);
 	}
 }
