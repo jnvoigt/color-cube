@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c1b2qouc71ng5"]
+
+[ext_resource type="Script" uid="uid://b6ttfjuhy4hcw" path="res://scripts/Menu.cs" id="1_bwjgb"]
+
+[node name="menu" type="Control" unique_id=427847494]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bwjgb")
+
+[node name="LoadButton" type="Button" parent="." unique_id=259572921]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Load File"
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1895288972]
+unique_name_in_owner = true
+title = "Open a File"
+file_mode = 0
+filters = PackedStringArray("*.png,*.jpg,*.jpeg;Image Files")
+use_native_dialog = true
+
+[connection signal="pressed" from="LoadButton" to="." method="OnLoadButtonClicked"]
+[connection signal="file_selected" from="FileDialog" to="." method="OnFileSelected"]

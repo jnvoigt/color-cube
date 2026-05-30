@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cky3oigyb4fde"]
+
+[ext_resource type="Script" uid="uid://cf6q08stl41gk" path="res://scripts/BucketObject.cs" id="1_ojsi1"]
+[ext_resource type="Shader" uid="uid://dkmwoyg2cmwv5" path="res://shaders/unlit.gdshader" id="2_4mj0c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axt1m"]
+render_priority = 0
+shader = ExtResource("2_4mj0c")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/border_width = 0.5
+shader_parameter/border_softness = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_qcheq"]
+material = SubResource("ShaderMaterial_axt1m")
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qcheq"]
+radius = 0.10169549
+
+[node name="bucket" type="StaticBody3D" unique_id=1247855063]
+script = ExtResource("1_ojsi1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=996127361]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_qcheq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1355441942]
+shape = SubResource("SphereShape3D_qcheq")

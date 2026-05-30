@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://r4uugmev6nqk"]
+
+[ext_resource type="Script" uid="uid://cvvlpm3giplqu" path="res://scripts/ColorCube.cs" id="1_2plm8"]
+
+[node name="ColorCube" type="Node3D" unique_id=1420074401]
+script = ExtResource("1_2plm8")
+
+[node name="bucket" parent="." unique_id=1286389755 instance_placeholder="res://scenes/bucket.tscn"]
+unique_name_in_owner = true

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bn46anfsjebdm"]
+
+[ext_resource type="PackedScene" uid="uid://c1b2qouc71ng5" path="res://ui/menu.tscn" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://r4uugmev6nqk" path="res://scenes/color_cube.tscn" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://bku7j760mbkay" path="res://scripts/CameraAnchor.cs" id="3_feb5d"]
+
+[sub_resource type="Environment" id="Environment_e2o6t"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 16.0
+
+[node name="Node2D" type="Node3D" unique_id=358376035]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2061751157]
+
+[node name="menu" parent="CanvasLayer" unique_id=427847494 instance=ExtResource("1_e2o6t")]
+anchors_preset = 9
+anchor_right = 0.0
+offset_right = 163.0
+grow_horizontal = 1
+
+[node name="ColorCube" parent="." unique_id=1420074401 instance=ExtResource("2_feb5d")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2094015728]
+environment = SubResource("Environment_e2o6t")
+
+[node name="CameraAnchor" type="Node3D" parent="." unique_id=983224001]
+script = ExtResource("3_feb5d")
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnchor" unique_id=424435003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.741768)
