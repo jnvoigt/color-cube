@@ -5,3 +5,9 @@
 .idea/
 out/
 obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
